@@ -42,10 +42,10 @@ end
 dW = randn(M,N);
 G = zeros(M,N);
 Snm1 = repmat(mod.S0, M, 1);
-
 for n = 1:N
     % Sample next S values
     Sn = Snm1.*exp((mod.r - mod.sigma^2/2)*dt + mod.sigma*sqrt(dt)*dW(:,n));
     G(:,n) = ind(Sn).*f(Snm1,Sn);
+    Snm1 = Sn;
 end
 P = exp(-mod.r*opt.T)*sum(prod([opt.h(Sn) G],2))/M;
