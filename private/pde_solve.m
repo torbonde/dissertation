@@ -35,9 +35,9 @@ a = @(x) dt*(mod.r*x/(2*dx) - mod.sigma^2*x.^2/(2*dx^2));
 b = @(x) 1 + mod.r*dt + mod.sigma^2*x.^2*dt/dx^2;
 c = @(x) -dt*(mod.r*x/(2*dx) + mod.sigma^2*x.^2/(2*dx^2));
 D = zeros(M-1);
-D(2:M:end) = a(xs(2:M-1));
-D(1:M:end) = b(xs(1:M-1));
-D(M:M:end) = c(xs(1:M-2));
+D(2:M:end) = a(xs(3:M));
+D(1:M:end) = b(xs(2:M));
+D(M:M:end) = c(xs(2:M-1));
 
 for n = N:-1:1
     % Solve system of linear equations
